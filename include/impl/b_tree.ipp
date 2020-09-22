@@ -4,6 +4,9 @@
 namespace eda {
 
 template <int m, typename T>
+BTree<m, T>::BTree() {}
+
+template <int m, typename T>
 void BTree<m, T>::insert(T value) {
 	if (this->root_ == nullptr) {
 		this->root_ = new Node;

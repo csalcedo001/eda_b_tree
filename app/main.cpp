@@ -6,6 +6,7 @@ using namespace std;
 
 int main()
 {
+	eda::BTree<3, int> btree;
 	// using btree_int = eda::btree<int, 3>; 
 
 	// btree_int bt;
