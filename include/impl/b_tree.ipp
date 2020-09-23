@@ -11,13 +11,25 @@ template <int m, typename T>
 BTree<m, T>::BTree() : root_(nullptr) {}
 
 template <int m, typename T>
+BTree<m, T>::~BTree() {
+	this->kill_(this->root_);
+}
+
+template <int m, typename T>
+void BTree<m, T>::print() {
+	this->print_(this->root_, 0);
+}
+
+template <int m, typename T>
 void BTree<m, T>::insert(T value) {
 	if (this->root_ == nullptr) {
 		this->root_ = new Node;
 
-		this->root_.values[0] = value;
+		this->root_->values[0] = value;
+		this->root_->children[0] = nullptr;
+		this->root_->children[1] = nullptr;
 
-		this->root_.capacity = 2;
+		this->root_->capacity = 2;
 	}
 	else if (this->insert_(this->root_, value) == OVERFLOW) {
 		Node *right_child = this->root_;
@@ -25,11 +37,11 @@ void BTree<m, T>::insert(T value) {
 
 		this->root_ = new Node;
 
-		this->root_.values[0] = right_child->values[right_child->capacity];
-		this->root_.children[0] = left_child;
-		this->root_.children[1] = right_child;
+		this->root_->values[0] = left_child->values[left_child->capacity];
+		this->root_->children[0] = left_child;
+		this->root_->children[1] = right_child;
 		
-		this->capacity = 1;
+		this->root_->capacity = 2;
 	}
 }
 
@@ -44,11 +56,13 @@ typename BTree<m, T>::State BTree<m, T>::insert_(Node *node, T value) {
 		this->insert_within_(node, child_index, value, nullptr);
 	}
 	else if (this->insert_(child, value) == OVERFLOW) {
-		Node *new_child = this->divide_(child);
-		this->insert_within_(node, child_index, child->values[child->capacity], new_child);
+		Node *new_child = this->divide_(node->children[child_index]);
+		this->insert_within_(node, child_index, new_child->values[new_child->capacity], node->children[child_index]);
 	}
 
-	return this->capacity == m ? OVERFLOW : OK;
+	node->capacity++;
+
+	return node->capacity == m + 1 ? OVERFLOW : OK;
 }
 
 template <int m, typename T>
@@ -59,7 +73,7 @@ typename BTree<m, T>::Node *BTree<m, T>::divide_(Node *&right_node) {
 	right_node = new Node;
 
 	for (int i = mid + 1; i < m; i++) {
-		right_node->values[i - mid - 1] = left_node->value[i];
+		right_node->values[i - mid - 1] = left_node->values[i];
 		right_node->children[i - mid - 1] = left_node->children[i];
 	}
 
@@ -75,7 +89,7 @@ template <int m, typename T>
 void BTree<m, T>::insert_within_(Node *node, int child_index, T value, Node *child) {
 	for (int i = node->capacity; i > std::max(child_index, 1); i--) {
 		node->children[i] = node->children[i - 1];
-		node->value[i - 1] = node->value[i - 2];
+		node->values[i - 1] = node->values[i - 2];
 	}
 
 	if (child_index == 0) {
@@ -100,20 +114,29 @@ int BTree<m, T>::child_key_(Node *node, T value) {
 }
 
 template <int m, typename T>
-void BTree<m, T>::kill_(Node *node) {
-	if (node->capacity > 0 && node->children[0] != nullptr) {
-		for (int i = 0; i < node->children.size(); i++) {
-			this->kill_(node->children[i]);
+void BTree<m, T>::print_(Node *node, int level) {
+	if (node != nullptr) {
+		this->print_(node->children[0], level + 1);
+
+		for (int i = 1; i < node->capacity; i++) {
+			for (int j = 0; j < level; j++) {
+				std::cout << "    ";
+			}
+			std::cout << node->values[i - 1] << std::endl;
+
+			this->print_(node->children[i], level + 1);
 		}
 	}
-
-	delete node;
 }
 
 template <int m, typename T>
-BTree<m, T>::~BTree() {
-	if (this->root_ != nullptr) {
-		this->kill_(this->root_);
+void BTree<m, T>::kill_(Node *node) {
+	if (node != nullptr) {
+		for (int i = 0; i < node->capacity; i++) {
+			this->kill_(node->children[i]);
+		}
+
+		delete node;
 	}
 }
 
