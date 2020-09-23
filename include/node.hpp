@@ -7,8 +7,8 @@ namespace eda {
 
 template <int m, typename T>
 struct BTree<m, T>::Node {
-	std::array<T, m - 1> values;
-	std::array<Node *, m> children;
+	std::array<T, m> values;
+	std::array<Node *, m + 1> children;
 	int capacity;
 
 	Node(void);

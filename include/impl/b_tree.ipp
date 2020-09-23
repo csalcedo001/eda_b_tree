@@ -37,7 +37,7 @@ void BTree<m, T>::insert(T value) {
 
 		this->root_ = new Node;
 
-		this->root_->values[0] = left_child->values[left_child->capacity];
+		this->root_->values[0] = left_child->values[left_child->capacity - 1];
 		this->root_->children[0] = left_child;
 		this->root_->children[1] = right_child;
 		
@@ -57,10 +57,8 @@ typename BTree<m, T>::State BTree<m, T>::insert_(Node *node, T value) {
 	}
 	else if (this->insert_(child, value) == OVERFLOW) {
 		Node *new_child = this->divide_(node->children[child_index]);
-		this->insert_within_(node, child_index, new_child->values[new_child->capacity], node->children[child_index]);
+		this->insert_within_(node, child_index, new_child->values[new_child->capacity - 1], node->children[child_index]);
 	}
-
-	node->capacity++;
 
 	return node->capacity == m + 1 ? OVERFLOW : OK;
 }
@@ -100,6 +98,8 @@ void BTree<m, T>::insert_within_(Node *node, int child_index, T value, Node *chi
 
 	node->children[child_index] = child;
 	node->values[value_index] = value;
+
+	node->capacity++;
 }
 
 template <int m, typename T>

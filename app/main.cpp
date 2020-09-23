@@ -8,12 +8,9 @@ int main()
 {
 	eda::BTree<3, int> btree;
 
-	btree.insert(1);
-	btree.insert(2);
-	btree.insert(3);
-	// btree.insert(2);
-	// btree.insert(3);
-	// btree.insert(4);
+	for (int i = 0; i < 10; i++) {
+		btree.insert(i + 1);
+	}
 	btree.print();
 	// using btree_int = eda::btree<int, 3>; 
 
