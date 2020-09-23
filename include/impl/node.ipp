@@ -1,6 +1,10 @@
 #ifndef B_TREE_NODE_IPP_
 #define B_TREE_NODE_IPP_
 
+#include "node.hpp"
+
+#include "b_tree.hpp"
+
 namespace eda {
 
 template <int m, typename T>

@@ -6,12 +6,11 @@
 namespace eda {
 
 template <int m, typename T>
-class BTree<m, T>::Node {
+struct BTree<m, T>::Node {
 	std::array<T, m - 1> values;
 	std::array<Node *, m> children;
 	int capacity;
 
-public:
 	Node(void);
 	
 	void search(T key);

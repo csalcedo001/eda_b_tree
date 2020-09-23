@@ -1,39 +1,39 @@
 #ifndef B_TREE_B_TREE_HPP_
 #define B_TREE_B_TREE_HPP_
 
+#include <array>
+
 namespace eda {
 
 template <int m, typename T>
 class BTree {
 public:
-	class Node;
+	struct Node;
+
+	enum State {
+		OVERFLOW,
+		UNDERFLOW,
+		OK
+	};
 
 private:
 	Node *root_;
 
-	// struct iterator {
-	// 	Node<m, t> *node;
-	// 	size_t index;
-
-	// 	iterator(Node<m, t> *, size_t);
-	// 	iterator &operator++(int);
-	// 	bool operator!=();
-	// 	bool operator==();
-	// 	bool operator*();
-	// };
-
 public:
 	BTree();
+	~BTree();
 
 	void insert(T);
 	bool exists(T);
 	void remove(T);
+	int size();
 
 private:
-	bool insert_(Node *, T);
-	Node *divide_(Node *);
+	State insert_(Node *, T);
+	Node *divide_(Node *&);
 	void insert_within_(Node *, int, T, Node *);
 	int child_key_(Node *, T);
+	void kill_(Node *);
 };
 
 } // namespace eda
