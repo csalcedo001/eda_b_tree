@@ -7,6 +7,14 @@ using namespace std;
 int main()
 {
 	eda::BTree<3, int> btree;
+
+	btree.insert(1);
+	btree.insert(2);
+	btree.insert(3);
+	// btree.insert(2);
+	// btree.insert(3);
+	// btree.insert(4);
+	btree.print();
 	// using btree_int = eda::btree<int, 3>; 
 
 	// btree_int bt;

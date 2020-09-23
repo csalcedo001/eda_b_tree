@@ -27,12 +27,14 @@ public:
 	bool exists(T);
 	void remove(T);
 	int size();
+	void print();
 
 private:
 	State insert_(Node *, T);
 	Node *divide_(Node *&);
 	void insert_within_(Node *, int, T, Node *);
 	int child_key_(Node *, T);
+	void print_(Node *, int level);
 	void kill_(Node *);
 };
 
