@@ -8,7 +8,7 @@
 namespace eda {
 
 template <int m, typename T>
-BTree<m, T>::Node::Node() {
+BTree<m, T>::Node::Node() : children({nullptr}) {
 	
 }
 

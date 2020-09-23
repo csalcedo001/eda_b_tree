@@ -57,7 +57,7 @@ typename BTree<m, T>::State BTree<m, T>::insert_(Node *node, T value) {
 	}
 	else if (this->insert_(child, value) == OVERFLOW) {
 		Node *new_child = this->divide_(node->children[child_index]);
-		this->insert_within_(node, child_index, new_child->values[new_child->capacity - 1], node->children[child_index]);
+		this->insert_within_(node, child_index, new_child->values[new_child->capacity - 1], new_child);
 	}
 
 	return node->capacity == m + 1 ? OVERFLOW : OK;

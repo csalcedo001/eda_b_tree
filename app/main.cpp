@@ -6,11 +6,18 @@ using namespace std;
 
 int main()
 {
-	eda::BTree<3, int> btree;
+	eda::BTree<4, int> btree;
 
-	for (int i = 0; i < 10; i++) {
-		btree.insert(i + 1);
-	}
+	btree.insert(1);
+	btree.insert(4);
+	btree.insert(5);
+	btree.insert(1);
+	btree.insert(-1);
+	btree.insert(8);
+	btree.insert(9);
+	btree.insert(2);
+	btree.insert(7);
+
 	btree.print();
 	// using btree_int = eda::btree<int, 3>; 
 
