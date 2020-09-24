@@ -16,14 +16,16 @@ public:
 	void render(double x, double y);
 
 public:
-	virtual int size() = 0;
+	virtual int values() = 0;
+	virtual int children() = 0;
 	
-	virtual T values(int) = 0;
-	virtual Node *children(int) = 0;
+	virtual T value(int) = 0;
+	virtual Node *child(int) = 0;
+	virtual bool is_leave() = 0;
 
 private:
 	virtual int leaves_() = 0;
-	virtual int leave_level_nodes_() = 0;
+	virtual int leave_level_values_() = 0;
 };
 
 } // namespace drawable

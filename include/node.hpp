@@ -7,14 +7,27 @@
 namespace eda {
 
 template <int m, typename T>
-struct BTree<m, T>::Node : public drawable::Tree<T>::Node {
-	std::array<T, m> values;
-	std::array<Node *, m + 1> children;
-	int capacity;
+class BTree<m, T>::Node : public drawable::Tree<T>::Node {
+public:
+	std::array<T, m> values_;
+	std::array<Node *, m + 1> children_;
+	int capacity_;
 
+public:
 	Node(void);
 	
 	void search(T key);
+
+	int children();
+	int values();
+
+	T value(int);
+	Node *child(int);
+	bool is_leave();
+
+private:
+	int leaves_();
+	int leave_level_values_();
 };
 
 } // namespace eda

@@ -20,6 +20,8 @@ int main()
 	btree.insert(7);
 
 	btree.print();
+
+	btree.render(0, 0);
 	// using btree_int = eda::btree<int, 3>; 
 
 	// btree_int bt;

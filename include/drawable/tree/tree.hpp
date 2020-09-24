@@ -9,7 +9,7 @@ namespace drawable {
 
 template <typename T>
 class Tree : Drawable {
-private:
+protected:
 	class Node;
 
 public:
