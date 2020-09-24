@@ -1,5 +1,8 @@
 #ifndef B_TREE_DRAWABLE_TREE_NODE_HPP_
 #define B_TREE_DRAWABLE_TREE_NODE_HPP_
+
+#include "drawable/tree/node.hpp"
+
 #include "drawable/drawable.hpp"
 
 namespace eda {

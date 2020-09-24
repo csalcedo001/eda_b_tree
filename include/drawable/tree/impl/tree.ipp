@@ -1,6 +1,8 @@
 #ifndef B_TREE_DRAWABLE_TREE_TREE_IPP_
 #define B_TREE_DRAWABLE_TREE_TREE_IPP_
 
+#include "drawable/tree/tree.hpp"
+
 namespace eda {
 
 namespace drawable {

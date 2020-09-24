@@ -16,7 +16,7 @@ public:
 	void render(double x, double y);
 
 private:
-	Node *root_();
+	virtual Node *root_() = 0;
 };
 
 } // namespace drawable
