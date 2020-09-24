@@ -9,7 +9,11 @@ namespace drawable {
 
 template <typename T>
 class Tree : Drawable {
+private:
 	class Node;
+
+public:
+	void render(double x, double y);
 
 private:
 	Node *root_();
@@ -19,6 +23,6 @@ private:
 
 } // namespace eda
 
-#include "drawable/impl/tree.ipp"
+#include "drawable/tree/impl/tree.ipp"
 
 #endif // B_TREE_DRAWABLE_TREE_TREE_HPP_

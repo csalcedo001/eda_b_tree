@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "b_tree.hpp"
+#include "drawable.hpp"
 
 using namespace std;
 

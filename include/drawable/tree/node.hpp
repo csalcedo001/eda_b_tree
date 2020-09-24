@@ -1,6 +1,5 @@
 #ifndef B_TREE_DRAWABLE_TREE_NODE_HPP_
 #define B_TREE_DRAWABLE_TREE_NODE_HPP_
-
 #include "drawable/drawable.hpp"
 
 namespace eda {
@@ -11,6 +10,7 @@ template <typename T>
 class Tree<T>::Node : public Drawable {
 public:
 	int width();
+	void render(double x, double y);
 
 public:
 	virtual int size() = 0;
@@ -27,6 +27,6 @@ private:
 
 } // namespace eda
 
-#include "drawable/impl/node.ipp"
+#include "drawable/tree/impl/node.ipp"
 
 #endif // B_TREE_DRAWABLE_TREE_NODE_HPP_
