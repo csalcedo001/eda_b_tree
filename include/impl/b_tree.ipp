@@ -8,40 +8,40 @@
 namespace eda {
 
 template <int m, typename T>
-BTree<m, T>::BTree() : root_(nullptr) {}
+BTree<m, T>::BTree() : head_(nullptr) {}
 
 template <int m, typename T>
 BTree<m, T>::~BTree() {
-	this->kill_(this->root_);
+	this->kill_(this->head_);
 }
 
 template <int m, typename T>
 void BTree<m, T>::print() {
-	this->print_(this->root_, 0);
+	this->print_(this->head_, 0);
 }
 
 template <int m, typename T>
 void BTree<m, T>::insert(T value) {
-	if (this->root_ == nullptr) {
-		this->root_ = new Node;
+	if (this->head_ == nullptr) {
+		this->head_ = new Node;
 
-		this->root_->values[0] = value;
-		this->root_->children[0] = nullptr;
-		this->root_->children[1] = nullptr;
+		this->head_->values[0] = value;
+		this->head_->children[0] = nullptr;
+		this->head_->children[1] = nullptr;
 
-		this->root_->capacity = 2;
+		this->head_->capacity = 2;
 	}
-	else if (this->insert_(this->root_, value) == OVERFLOW) {
-		Node *right_child = this->root_;
+	else if (this->insert_(this->head_, value) == OVERFLOW) {
+		Node *right_child = this->head_;
 		Node *left_child = this->divide_(right_child);
 
-		this->root_ = new Node;
+		this->head_ = new Node;
 
-		this->root_->values[0] = left_child->values[left_child->capacity - 1];
-		this->root_->children[0] = left_child;
-		this->root_->children[1] = right_child;
+		this->head_->values[0] = left_child->values[left_child->capacity - 1];
+		this->head_->children[0] = left_child;
+		this->head_->children[1] = right_child;
 		
-		this->root_->capacity = 2;
+		this->head_->capacity = 2;
 	}
 }
 

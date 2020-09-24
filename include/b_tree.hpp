@@ -3,12 +3,14 @@
 
 #include <array>
 
+#include "drawable/tree.hpp"
+
 namespace eda {
 
 template <int m, typename T>
-class BTree {
+class BTree : public drawable::Tree<T> {
 public:
-	struct Node;
+	class Node;
 
 	enum State {
 		OVERFLOW,
@@ -17,7 +19,7 @@ public:
 	};
 
 private:
-	Node *root_;
+	Node *head_;
 
 public:
 	BTree();
@@ -36,6 +38,8 @@ private:
 	int child_key_(Node *, T);
 	void print_(Node *, int level);
 	void kill_(Node *);
+
+	Node *root_();
 };
 
 } // namespace eda

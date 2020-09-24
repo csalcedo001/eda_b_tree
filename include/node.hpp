@@ -2,11 +2,12 @@
 #define B_TREE_NODE_HPP_
 
 #include "b_tree.hpp"
+#include "drawable/tree.hpp"
 
 namespace eda {
 
 template <int m, typename T>
-struct BTree<m, T>::Node {
+struct BTree<m, T>::Node : public drawable::Tree<T>::Node {
 	std::array<T, m> values;
 	std::array<Node *, m + 1> children;
 	int capacity;
