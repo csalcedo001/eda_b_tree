@@ -1,5 +1,5 @@
-#ifndef B_TREE_DRAWABLE_NODE_IPP_
-#define B_TREE_DRAWABLE_NODE_IPP_
+#ifndef B_TREE_DRAWABLE_TREE_NODE_IPP_
+#define B_TREE_DRAWABLE_TREE_NODE_IPP_
 
 #include "drawable/drawable.hpp"
 
@@ -33,4 +33,4 @@ void Tree<T>::Node::width() {
 
 } // namespace eda
 
-#endif // B_TREE_DRAWABLE_NODE_IPP_
+#endif // B_TREE_DRAWABLE_TREE_NODE_IPP_

@@ -1,5 +1,5 @@
-#ifndef B_TREE_DRAWABLE_TREE_IPP_
-#define B_TREE_DRAWABLE_TREE_IPP_
+#ifndef B_TREE_DRAWABLE_TREE_TREE_IPP_
+#define B_TREE_DRAWABLE_TREE_TREE_IPP_
 
 namespace eda {
 
@@ -14,4 +14,4 @@ void Tree<T>::render(double x, double y) {
 
 } // namespace eda
 
-#endif // B_TREE_DRAWABLE_TREE_IPP_
+#endif // B_TREE_DRAWABLE_TREE_TREE_IPP_

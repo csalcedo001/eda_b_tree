@@ -1,5 +1,5 @@
-#ifndef B_TREE_DRAWABLE_NODE_HPP_
-#define B_TREE_DRAWABLE_NODE_HPP_
+#ifndef B_TREE_DRAWABLE_TREE_NODE_HPP_
+#define B_TREE_DRAWABLE_TREE_NODE_HPP_
 
 #include "drawable/drawable.hpp"
 
@@ -29,4 +29,4 @@ private:
 
 #include "drawable/impl/node.ipp"
 
-#endif // B_TREE_DRAWABLE_NODE_HPP_
+#endif // B_TREE_DRAWABLE_TREE_NODE_HPP_

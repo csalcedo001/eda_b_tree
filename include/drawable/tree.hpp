@@ -3,22 +3,7 @@
 
 #include "drawable/drawable.hpp"
 
-namespace eda {
-
-namespace drawable {
-
-template <typename T>
-class Tree : Drawable {
-	class Node;
-
-private:
-	Node *root_();
-};
-
-} // namespace drawable
-
-} // namespace eda
-
-#include "drawable/impl/tree.ipp"
+#include "drawable/tree/tree.hpp"
+#include "drawable/tree/node.hpp"
 
 #endif // B_TREE_DRAWABLE_TREE_HPP_
