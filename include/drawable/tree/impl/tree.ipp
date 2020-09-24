@@ -9,7 +9,9 @@ namespace drawable {
 
 template <typename T>
 void Tree<T>::render(double x, double y) {
-	this->root_()->render(x, y);
+	if (this->root_() != nullptr) {
+		this->root_()->render(x, y);
+	}
 }
 
 } // namespace drawable

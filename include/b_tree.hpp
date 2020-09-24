@@ -13,9 +13,9 @@ public:
 	class Node;
 
 	enum State {
-		OVERFLOW,
-		UNDERFLOW,
-		OK
+		NODE_OVERFLOW,
+		NODE_UNDERFLOW,
+		NODE_OK
 	};
 
 private:
