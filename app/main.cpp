@@ -128,7 +128,6 @@ int main()
         if (time(nullptr) - t >= 1) {
             btree.insert(i++);
             t += 1;
-            btree.print();
         }
         
         btree.render(0, 0);
