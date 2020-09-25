@@ -40,6 +40,7 @@ include_directories(
     external/assimp-3.0.1270/include/
     external/bullet-2.81-rev2613/src/
     include/
+    shaders/
     .
 )
 
@@ -67,13 +68,29 @@ add_executable(main
 	include/drawable.hpp
 	include/drawable/drawable.hpp
 	include/drawable/tree.hpp
+    include/drawable/shape.hpp
 	include/drawable/tree/tree.hpp
 	include/drawable/tree/node.hpp
 
 	include/impl/b_tree.ipp
 	include/impl/node.ipp
+    include/drawable/impl/shape.ipp
 	include/drawable/tree/impl/tree.ipp
 	include/drawable/tree/impl/node.ipp
+    
+    common/shader.cpp
+    common/shader.hpp
+    common/texture.cpp
+    common/texture.hpp
+    common/controls.cpp
+    common/controls.hpp
+    common/text2D.cpp
+    common/text2D.hpp
+ 
+    main/StandardShading.fragmentshader
+    main/StandardShading.vertexshader
+    main/TextVertexShader.fragmentshader
+    main/TextVertexShader.vertexshader
 )
 target_link_libraries(main
     ${ALL_LIBS}
@@ -83,8 +100,9 @@ create_target_launcher(main WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/main/
 create_default_target_launcher(main WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/main/")
 
 
-# SOURCE_GROUP(common REGULAR_EXPRESSION ".*/common/.*" )
-# SOURCE_GROUP(shaders REGULAR_EXPRESSION ".*/.*shader$" )
+SOURCE_GROUP(common REGULAR_EXPRESSION ".*/common/.*" )
+SOURCE_GROUP(shaders REGULAR_EXPRESSION ".*/.*shader$" )
+SOURCE_GROUP(impl REGULAR_EXPRESSION ".*/.*ipp$" )
 
 # add_custom_command(
 #    TARGET main POST_BUILD
