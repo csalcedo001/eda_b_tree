@@ -1,13 +1,14 @@
 #ifndef B_TREE_NODE_HPP_
 #define B_TREE_NODE_HPP_
 
-#include "b_tree.hpp"
-#include "drawable/tree.hpp"
+#include <array>
 
 namespace eda {
 
+namespace b_tree {
+
 template <int m, typename T>
-class BTree<m, T>::Node : public drawable::Tree<T>::Node {
+class Node {
 public:
 	std::array<T, m> values_;
 	std::array<Node *, m + 1> children_;
@@ -15,8 +16,6 @@ public:
 
 public:
 	Node(void);
-	
-	void search(T key);
 
 	int children();
 	int values();
@@ -29,6 +28,8 @@ protected:
 	int leaves_();
 	int leave_level_values_();
 };
+
+} // namespace b_tree
 
 } // namespace eda
 

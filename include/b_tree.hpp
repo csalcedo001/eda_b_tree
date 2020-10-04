@@ -1,17 +1,15 @@
 #ifndef B_TREE_B_TREE_HPP_
 #define B_TREE_B_TREE_HPP_
 
-#include <array>
-
-#include "drawable/tree.hpp"
+#include "node.hpp"
 
 namespace eda {
 
-template <int m, typename T>
-class BTree : public drawable::Tree<T> {
-public:
-	class Node;
+namespace b_tree {
 
+template <int m, typename T>
+class BTree {
+public:
 	enum State {
 		NODE_OVERFLOW,
 		NODE_UNDERFLOW,
@@ -19,7 +17,7 @@ public:
 	};
 
 private:
-	Node *head_;
+	Node<m, T> *head_;
 
 public:
 	BTree();
@@ -32,15 +30,15 @@ public:
 	void print();
 
 private:
-	State insert_(Node *, T);
-	Node *divide_(Node *&);
-	void insert_within_(Node *, int, T, Node *);
-	int child_key_(Node *, T);
-	void print_(Node *, int level);
-	void kill_(Node *);
-
-	Node *root_();
+	State insert_(Node<m, T> *, T);
+	Node<m, T> *divide_(Node<m, T> *&);
+	void insert_within_(Node<m, T> *, int, T, Node<m, T> *);
+	int child_key_(Node<m, T> *, T);
+	void print_(Node<m, T> *, int level);
+	void kill_(Node<m, T> *);
 };
+
+} // namespace b_tree
 
 } // namespace eda
 

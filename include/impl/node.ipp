@@ -7,45 +7,42 @@
 
 namespace eda {
 
+namespace b_tree {
+
 template <int m, typename T>
-BTree<m, T>::Node::Node() {
+Node<m, T>::Node() {
 	for (int i = 0; i < m; i++) {
 		this->children_[i] = nullptr;
 	}
 }
 
 template <int m, typename T>
-void BTree<m, T>::Node::search(T key) {
-	
-}
-
-template <int m, typename T>
-int BTree<m, T>::Node::values() {
+int Node<m, T>::values() {
 	return this->capacity_ - 1;
 }
 
 template <int m, typename T>
-int BTree<m, T>::Node::children() {
+int Node<m, T>::children() {
 	return this->is_leave() ? 0 : this->capacity_;
 }
 
 template <int m, typename T>
-T BTree<m, T>::Node::value(int index) {
+T Node<m, T>::value(int index) {
 	return this->values_[index];
 }
 
 template <int m, typename T>
-typename BTree<m, T>::Node *BTree<m, T>::Node::child(int index) {
+Node<m, T> *Node<m, T>::child(int index) {
 	return this->children_[index];
 }
 
 template <int m, typename T>
-bool BTree<m, T>::Node::is_leave() {
+bool Node<m, T>::is_leave() {
 	return this->capacity_ == 0 || this->children_[0] == nullptr;
 }
 
 template <int m, typename T>
-int BTree<m, T>::Node::leaves_() {
+int Node<m, T>::leaves_() {
 	if (this->is_leave()) return 1;
 
 	int total = 0;
@@ -60,7 +57,7 @@ int BTree<m, T>::Node::leaves_() {
 }
 
 template <int m, typename T>
-int BTree<m, T>::Node::leave_level_values_() {
+int Node<m, T>::leave_level_values_() {
 	if (this->is_leave()) return this->capacity_ - 1;
 
 	int total = 0;
@@ -73,6 +70,8 @@ int BTree<m, T>::Node::leave_level_values_() {
 
 	return total;
 }
+
+} // namespace b_tree
 
 } // namespace eda
 
