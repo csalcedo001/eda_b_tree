@@ -9,8 +9,8 @@ namespace eda {
 
 namespace b_tree {
 
-template <int m, typename T>
-Node<m, T>::Node() {
+template <typename T, int m>
+Node<T, m>::Node() {
 	for (int i = 0; i < m; i++) {
 		this->children_[i] = nullptr;
 	}

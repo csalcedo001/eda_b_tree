@@ -7,7 +7,7 @@ namespace eda {
 
 namespace b_tree {
 
-template <int m, typename T>
+template <typename T, int m>
 class Node {
 public:
 	std::array<T, m> values_;

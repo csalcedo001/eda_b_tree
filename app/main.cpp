@@ -4,7 +4,7 @@
 
 int main()
 {
-    eda::b_tree::BTree<3, int> btree;
+    eda::b_tree::BTree<int, 3> btree;
     
     btree.insert(1);
     btree.insert(4);

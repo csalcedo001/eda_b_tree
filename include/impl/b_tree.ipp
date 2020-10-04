@@ -9,23 +9,23 @@ namespace eda {
 
 namespace b_tree {
 
-template <int m, typename T>
-BTree<m, T>::BTree() : head_(nullptr) {}
+template <typename T, int m>
+BTree<T, m>::BTree() : head_(nullptr) {}
 
-template <int m, typename T>
-BTree<m, T>::~BTree() {
-	this->kill_(this->head_);
+template <typename T, int m>
+BTree<T, m>::~BTree() {
+	this->kill(this->head_);
 }
 
-template <int m, typename T>
-void BTree<m, T>::print() {
-	this->print_(this->head_, 0);
+template <typename T, int m>
+void BTree<T, m>::print() {
+	this->print(this->head_, 0);
 }
 
-template <int m, typename T>
-void BTree<m, T>::insert(T value) {
+template <typename T, int m>
+void BTree<T, m>::insert(T value) {
 	if (this->head_ == nullptr) {
-		this->head_ = new Node<m, T>;
+		this->head_ = new Node<T, m>;
 
 		this->head_->values_[0] = value;
 		this->head_->children_[0] = nullptr;
@@ -33,11 +33,11 @@ void BTree<m, T>::insert(T value) {
 
 		this->head_->capacity_ = 2;
 	}
-	else if (this->insert_(this->head_, value) == NODE_OVERFLOW) {
-		Node<m, T> *right_child = this->head_;
-		Node<m, T> *left_child = this->divide_(right_child);
+	else if (this->insert(this->head_, value) == NODE_OVERFLOW) {
+		Node<T, m> *right_child = this->head_;
+		Node<T, m> *left_child = this->divide(right_child);
 
-		this->head_ = new Node<m, T>;
+		this->head_ = new Node<T, m>;
 
 		this->head_->values_[0] = left_child->values_[left_child->capacity_ - 1];
 		this->head_->children_[0] = left_child;
@@ -47,30 +47,30 @@ void BTree<m, T>::insert(T value) {
 	}
 }
 
-template <int m, typename T>
-typename BTree<m, T>::State BTree<m, T>::insert_(Node<m, T> *node, T value) {
-	int child_index = this->child_key_(node, value);
+template <typename T, int m>
+typename BTree<T, m>::State BTree<T, m>::insert(Node<T, m> *node, T value) {
+	int child_index = this->child_key(node, value);
 	int value_index = std::min(child_index, m - 1);
 
-	Node<m, T> *child = node->children_[child_index];
+	Node<T, m> *child = node->children_[child_index];
 
 	if (child == nullptr) {
-		this->insert_within_(node, child_index, value, nullptr);
+		this->insert_within(node, child_index, value, nullptr);
 	}
-	else if (this->insert_(child, value) == NODE_OVERFLOW) {
-		Node<m, T> *new_child = this->divide_(node->children_[child_index]);
-		this->insert_within_(node, child_index, new_child->values_[new_child->capacity_ - 1], new_child);
+	else if (this->insert(child, value) == NODE_OVERFLOW) {
+		Node<T, m> *new_child = this->divide(node->children_[child_index]);
+		this->insert_within(node, child_index, new_child->values_[new_child->capacity_ - 1], new_child);
 	}
 
 	return node->capacity_ == m + 1 ? NODE_OVERFLOW : NODE_OK;
 }
 
-template <int m, typename T>
-Node<m, T> *BTree<m, T>::divide_(Node<m, T> *&right_node) {
+template <typename T, int m>
+Node<T, m> *BTree<T, m>::divide(Node<T, m> *&right_node) {
 	int mid = (m - 1) / 2;
 
-	Node<m, T> *left_node = right_node;
-	right_node = new Node<m, T>;
+	Node<T, m> *left_node = right_node;
+	right_node = new Node<T, m>;
 
 	for (int i = mid + 1; i < m; i++) {
 		right_node->values_[i - mid - 1] = left_node->values_[i];
@@ -85,8 +85,8 @@ Node<m, T> *BTree<m, T>::divide_(Node<m, T> *&right_node) {
 	return left_node;
 }
 
-template <int m, typename T>
-void BTree<m, T>::insert_within_(Node<m, T> *node, int child_index, T value, Node<m, T> *child) {
+template <typename T, int m>
+void BTree<T, m>::insert_within(Node<T, m> *node, int child_index, T value, Node<T, m> *child) {
 	for (int i = node->capacity_; i > std::max(child_index, 1); i--) {
 		node->children_[i] = node->children_[i - 1];
 		node->values_[i - 1] = node->values_[i - 2];
@@ -104,8 +104,8 @@ void BTree<m, T>::insert_within_(Node<m, T> *node, int child_index, T value, Nod
 	node->capacity_++;
 }
 
-template <int m, typename T>
-int BTree<m, T>::child_key_(Node<m, T> *node, T value) {
+template <typename T, int m>
+int BTree<T, m>::child_key(Node<T, m> *node, T value) {
 	for (int i = 0; i < node->capacity_ - 1; i++) {
 		if (value < node->values_[i]) {
 			return i;
@@ -115,10 +115,10 @@ int BTree<m, T>::child_key_(Node<m, T> *node, T value) {
 	return node->capacity_ - 1;
 }
 
-template <int m, typename T>
-void BTree<m, T>::print_(Node<m, T> *node, int level) {
+template <typename T, int m>
+void BTree<T, m>::print(Node<T, m> *node, int level) {
 	if (node != nullptr) {
-		this->print_(node->children_[0], level + 1);
+		this->print(node->children_[0], level + 1);
 
 		for (int i = 1; i < node->capacity_; i++) {
 			for (int j = 0; j < level; j++) {
@@ -126,16 +126,16 @@ void BTree<m, T>::print_(Node<m, T> *node, int level) {
 			}
 			std::cout << node->values_[i - 1] << std::endl;
 
-			this->print_(node->children_[i], level + 1);
+			this->print(node->children_[i], level + 1);
 		}
 	}
 }
 
-template <int m, typename T>
-void BTree<m, T>::kill_(Node<m, T> *node) {
+template <typename T, int m>
+void BTree<T, m>::kill(Node<T, m> *node) {
 	if (node != nullptr) {
 		for (int i = 0; i < node->capacity_; i++) {
-			this->kill_(node->children_[i]);
+			this->kill(node->children_[i]);
 		}
 
 		delete node;
