@@ -24,6 +24,7 @@ using namespace glm;
 
 #include "b_tree.hpp"
 #include "drawable.hpp"
+#include "b_star_tree/b_star_tree.hpp"
 
 int main()
 {
@@ -90,17 +91,31 @@ int main()
     int i = 0;
     long long t = time(nullptr);
     
-	eda::BTree<4, int> btree;
+    // VTK
+    
+//	eda::BTree<4, int> btree;
+//
+//	btree.insert(1);
+//	btree.insert(4);
+//	btree.insert(5);
+//	btree.insert(1);
+//	btree.insert(-1);
+//	btree.insert(8);
+//	btree.insert(9);
+//	btree.insert(2);
+//	btree.insert(7);
 
-	btree.insert(1);
-	btree.insert(4);
-	btree.insert(5);
-	btree.insert(1);
-	btree.insert(-1);
-	btree.insert(8);
-	btree.insert(9);
-	btree.insert(2);
-	btree.insert(7);
+    eda::BStarTree<3, int> bstartree;
+    
+    bstartree.insert(1);
+    bstartree.insert(4);
+    bstartree.insert(5);
+    bstartree.insert(1);
+    bstartree.insert(-1);
+    bstartree.insert(8);
+    bstartree.insert(9);
+    bstartree.insert(2);
+    bstartree.insert(7);
     
 	// using btree_int = eda::btree<int, 3>; 
 
@@ -125,12 +140,14 @@ int main()
         
         computeMatricesFromInputs();
         
-        if (time(nullptr) - t >= 1) {
-            btree.insert(i++);
-            t += 1;
+        if (time(nullptr) - t >= 5) {
+//            btree.insert(i++);
+            bstartree.insert(i++);
+            t += 5;
         }
         
-        btree.render(0, 0);
+        bstartree.render(0, 0);
+        bstartree.print_tree();
         
         char title[] = "B TREE";
         printText2D(title, -2, 1, 0.5);

@@ -71,12 +71,18 @@ add_executable(main
     include/drawable/shape.hpp
 	include/drawable/tree/tree.hpp
 	include/drawable/tree/node.hpp
+    include/b_star_tree/b_star_tree.hpp
+    include/b_star_tree/node.hpp
 
 	include/impl/b_tree.ipp
 	include/impl/node.ipp
     include/drawable/impl/shape.ipp
 	include/drawable/tree/impl/tree.ipp
 	include/drawable/tree/impl/node.ipp
+    include/b_star_tree/impl/b_star_tree.ipp
+    include/b_star_tree/impl/node.ipp
+    
+    include/b_star_tree/b_star/src/utec/memory/bstar.h
     
     common/shader.cpp
     common/shader.hpp

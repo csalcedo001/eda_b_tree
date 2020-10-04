@@ -15,7 +15,7 @@ protected:
 public:
 	void render(double x, double y);
 
-private:
+protected:
 	virtual Node *root_() = 0;
 };
 

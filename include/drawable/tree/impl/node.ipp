@@ -12,6 +12,7 @@ namespace drawable {
 
 template <typename T>
 void Tree<T>::Node::render(double x, double y) {
+    std::cout << this->children() << ' ' << x << ' ' << y << std::endl;
 	for (float i = 0; i < this->values(); i++) {
 		render_shape(this->value(i), i + x - this->values() / 2.0f, y);
 	}

@@ -25,7 +25,7 @@ public:
 	Node *child(int);
 	bool is_leave();
 
-private:
+protected:
 	int leaves_();
 	int leave_level_values_();
 };

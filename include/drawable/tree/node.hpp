@@ -23,7 +23,7 @@ public:
 	virtual Node *child(int) = 0;
 	virtual bool is_leave() = 0;
 
-private:
+protected:
 	virtual int leaves_() = 0;
 	virtual int leave_level_values_() = 0;
 };
