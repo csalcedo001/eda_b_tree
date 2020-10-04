@@ -16,17 +16,6 @@ public:
 
 public:
 	Node(void);
-
-	int children();
-	int values();
-
-	T value(int);
-	Node *child(int);
-	bool is_leave();
-
-protected:
-	int leaves_();
-	int leave_level_values_();
 };
 
 } // namespace b_tree
