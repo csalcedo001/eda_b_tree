@@ -1,16 +1,16 @@
 #ifndef B_TREE_NODE_IPP_
 #define B_TREE_NODE_IPP_
 
-#include "node.hpp"
+#include "base_node.hpp"
 
-#include "b_tree.hpp"
+#include "base_b_tree.hpp"
 
 namespace eda {
 
 namespace b_tree {
 
-template <typename T, int m>
-Node<T, m>::Node() {
+template <typename T, int m, typename Node>
+BaseNode<T, m, Node>::BaseNode() {
 	for (int i = 0; i < m; i++) {
 		this->children_[i] = nullptr;
 	}

@@ -3,25 +3,17 @@
 
 #include <array>
 
+#include "base_node.hpp"
+
 namespace eda {
 
 namespace b_tree {
 
 template <typename T, int m>
-class Node {
-public:
-	std::array<T, m> values_;
-	std::array<Node *, m + 1> children_;
-	int capacity_;
-
-public:
-	Node(void);
-};
+class Node : public BaseNode<T, m, Node<T, m> > { };
 
 } // namespace b_tree
 
 } // namespace eda
-
-#include "impl/node.ipp"
 
 #endif // B_TREE_NODE_HPP_
